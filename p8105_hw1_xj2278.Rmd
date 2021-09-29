@@ -47,3 +47,12 @@ num_fct = as.numeric(fct)
 
 The logical and factor vectors are successfully transformed into numeric vectors, while the character vector fails to do so. For the logical vector, TRUE and FALSE are assigned values 1 and 0; for the factor vectors, the three factor levels are assigned 1, 2, and 3 as values. However, the ten characters are distinct and cannot be assigned numeric values. Thus, we cannot take average of character vector since it cannot be representated by numeric values. 
 
+## Problem 2
+Load the penguin dataset. 
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+The names of variables in the `penguins` dataset are `r names(penguins)`. It has `r nrow(penguins)` rows and `r ncol(penguins)` columns. The mean flipper length in this dataset is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`. 
+
