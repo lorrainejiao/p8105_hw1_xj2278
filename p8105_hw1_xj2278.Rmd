@@ -20,6 +20,7 @@ P1_df = tibble(
   chr_vec = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"),
   fct_vec = factor(c("red", "blue", "yellow", "blue", "red", "red", "yellow", "blue", "red", "yellow"))
 )
+P1_df
 ```
 
 Taking the mean of each variable: 
@@ -36,7 +37,7 @@ mean(chr)
 mean(fct)
 ```
 
-mean() works for the numeric and logical vectors, while it does not work for character and factor vectors.
+`mean()` works for the numeric and logical vectors, while it does not work for character and factor vectors.
 Taking averages for numbers and logical vector (TRUE as 1 and FALSE as 0) is doable, while it is not reasonable to get means of characters and factors. 
 
 ```{r, eval = FALSE}
@@ -55,4 +56,13 @@ data("penguins", package = "palmerpenguins")
 ```
 
 The names of variables in the `penguins` dataset are `r names(penguins)`. It has `r nrow(penguins)` rows and `r ncol(penguins)` columns. The mean flipper length in this dataset is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`. 
+
+To construct a scatter plot of the flipper length and the bill length and to stratify the data points by species: 
+
+```{r}
+penguins %>%
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species)) 
+ggsave("scatter_plot.pdf")
+```
 
