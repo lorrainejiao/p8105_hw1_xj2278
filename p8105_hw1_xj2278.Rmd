@@ -5,6 +5,45 @@ output: github_document
 
 ```{r setup}
 library(tidyverse)
+
+set.seed(1)
 ```
 
 ## Problem 1
+
+Creating a data frame that has 10 subjects randomly sampled from a standard Normal distribution, a logical vector indicating whether these values are greater than 0, a corresponding character vector, and a factor vector with 3 different levels. 
+
+```{r}
+P1_df = tibble(
+  norm_samp = rnorm(10, mean = 0, sd = 1),
+  norm_samp_pos = norm_samp > 0, 
+  chr_vec = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"),
+  fct_vec = factor(c("red", "blue", "yellow", "blue", "red", "red", "yellow", "blue", "red", "yellow"))
+)
+```
+
+Taking the mean of each variable: 
+
+```{r}
+num = pull(P1_df, norm_samp)
+logi = pull(P1_df, norm_samp_pos)
+chr = pull(P1_df, chr_vec)
+fct = pull(P1_df, fct_vec)
+
+mean(num)
+mean(logi)
+mean(chr)
+mean(fct)
+```
+
+mean() works for the numeric and logical vectors, while it does not work for character and factor vectors.
+Taking averages for numbers and logical vector (TRUE as 1 and FALSE as 0) is doable, while it is not reasonable to get means of characters and factors. 
+
+```{r, eval = FALSE}
+num_logi = as.numeric(logi)
+num_chr = as.numeric(chr)
+num_fct = as.numeric(fct)
+```
+
+The logical and factor vectors are successfully transformed into numeric vectors, while the character vector fails to do so. For the logical vector, TRUE and FALSE are assigned values 1 and 0; for the factor vectors, the three factor levels are assigned 1, 2, and 3 as values. However, the ten characters are distinct and cannot be assigned numeric values. Thus, we cannot take average of character vector since it cannot be representated by numeric values. 
+
