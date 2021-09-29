@@ -1,0 +1,10 @@
+---
+title: "Homework 1"
+output: github_document
+---
+
+```{r setup}
+library(tidyverse)
+```
+
+## Problem 1
